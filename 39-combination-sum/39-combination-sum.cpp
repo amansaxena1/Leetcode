@@ -8,12 +8,13 @@ public:
            }
            return;
        }
+       findCombination(ind+1, target, arr, ans, ds);
        if(arr[ind] <= target){
            ds.push_back(arr[ind]);
            findCombination(ind, target-arr[ind], arr, ans, ds);
-           ds.pop_back();
+           // ds.pop_back();
        }
-       findCombination(ind+1, target, arr, ans, ds);
+       
    }
     
      
