@@ -4,9 +4,9 @@ public:
     int maxSumRangeQuery(vector<int>& nums, vector<vector<int>>& requests) {
         int n = nums.size();
         vector<int>sub(n,0);
-        for(auto &v: requests){
-            sub[v[0]]++;
-            if(v[1] < n-1) sub[v[1]+1]--;
+        for(auto i: requests){
+            sub[i[0]]++;
+            if(i[1] < n-1) sub[i[1]+1]--;
         }
         long long res = sub[0];
         for(int i=1;i<n;i++){
