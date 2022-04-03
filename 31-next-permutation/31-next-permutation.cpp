@@ -9,16 +9,12 @@ public:
                         ind = j;
                         diff = abs(nums[j] - nums[i-1]);
                     }
-                    // cout<<diff<<" "<<ind;
                 }
-                // cout<<ind<<" "<<i;
                 swap(nums[i-1],nums[ind]);
                 ind = i;
-                
                 break;
             }
         }
-        // cout<<ind<<" ";
         sort(nums.begin()+ind,nums.end());
     }
 };
