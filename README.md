@@ -1,2 +1,2 @@
-# Leetcode
-Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub](https://github.com/QasimWani/LeetHub)
+# Geeks For Geeks
+This repo contains all accepted submissions of saxenaaman20001 from GFG.
