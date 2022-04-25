@@ -1,31 +1,22 @@
+#define llint long long int
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
-        int l = 0,r = nums.size()-1;
-        int first = -1,second = -1, mid;
-        if(nums.size() == 0){
-            return {-1,-1};
-        }
-        while(l < r){
+        llint n=nums.size(), l = 0, r = n-1, mid, left=-1, right=-1;
+        while(l<=r){
             mid = (l+r)/2;
-            if(nums[mid] < target) l = mid+1;
-            else if(nums[mid] >= target) r = mid;
+            if(nums[mid]==target) left = mid;
+            if(nums[mid]<target) l = mid+1;
+            else r = mid-1;
         }
-        if(nums[r] == target) {
-            first = r;
-            l = r;
-            r = nums.size()-1;
-            while(l <= r){
-                mid = (l+r)/2;
-                if(nums[mid] > target) r = mid-1;
-                else if(nums[mid] == target){
-                    second = mid;
-                    l = mid+1;
-                }
-            }
-            if(nums[mid] == target) second = mid;
+        l=0;
+        r=n-1;
+        while(l<=r){
+            mid = (l+r)/2;
+            if(nums[mid]==target) right = mid;
+            if(nums[mid]>target) r = mid-1;
+            else l = mid+1;
         }
-        else return {-1,-1};    
-        return {first,second};
+        return {(int)left, (int)right};
     }
 };
