@@ -35,10 +35,10 @@ class Solution{
                     break;
                 }
                 else if(p == -1){
-                    r = mid;
+                    r = mid + 0.01;
                 } 
                 else if(p == 1){
-                    l = mid;
+                    l = mid - 0.01;
                 }
             }
         }   
