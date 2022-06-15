@@ -28,10 +28,11 @@ int main()
 }
 // } Driver Code Ends
 
-
+#define llint int
 int chocolates(int arr[], int n)
 {
-    sort(arr,arr+n);
-    return arr[0];
+    llint mini = INT_MAX;
+    for(int i=0;i<n;i++) mini = min(mini, arr[i]);
+    return mini;
     
 }
