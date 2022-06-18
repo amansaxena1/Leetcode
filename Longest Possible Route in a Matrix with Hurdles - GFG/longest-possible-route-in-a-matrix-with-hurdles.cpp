@@ -7,34 +7,28 @@ using namespace std;
 
  // } Driver Code Ends
 //User function Template for C++
-class Solution {
-    
-    void helper(vector<vector<int>> &matrix,int i,int j, int xd, int yd,int ans,vector<int> &ans_v){
-        
-        
-        if(i<0 || j<0 || i >= matrix.size() || j>= matrix[0].size() || matrix[i][j] == 0) return;
-        else if(i == xd && j == yd){
-            ans_v.push_back(ans);
-            return;
-        }
-        else{
-            matrix[i][j] = 0;
-            
-            helper(matrix,i+1,j,xd,yd,ans+1,ans_v);
-            helper(matrix,i,j-1,xd,yd,ans+1,ans_v);
-            helper(matrix,i,j+1,xd,yd,ans+1,ans_v);
-            helper(matrix,i-1,j,xd,yd,ans+1,ans_v);
-            
-            matrix[i][j] = 1;
-        }
-    }
-    
+#define llint int
+class Solution{
 public:
-    int longestPath(vector<vector<int>> &matrix, int xs, int ys, int xd, int yd)
-    {
-        vector<int> ans{-1};
-        helper(matrix,xs,ys,xd,yd,0,ans);
-        return *max_element(ans.begin(),ans.end());
+
+    llint helper(llint xs, llint ys, llint xd, llint yd, llint cnt, vector<vector<int>>matrix){
+        llint a = 0;
+        if(xs == xd && ys == yd) a = cnt;
+        matrix[xs][ys] = 0;
+        if(xs+1 < matrix.size() && matrix[xs + 1][ys] == 1) a = max(a, helper(xs+1, ys, xd,yd, cnt+1, matrix));
+        if(xs-1 >= 0 && matrix[xs - 1][ys] == 1) a = max(a, helper(xs-1, ys, xd,yd, cnt+1, matrix));
+        if(ys+1 < matrix[0].size() && matrix[xs][ys + 1] == 1) a = max(a, helper(xs, ys+1, xd,yd, cnt+1, matrix));
+        if(ys-1 >= 0 && matrix[xs][ys - 1] == 1) a = max(a, helper(xs, ys-1, xd,yd, cnt+1, matrix));
+        matrix[xs][ys] = 1;
+        if(a == 0) return -1;
+        return a;
+    }
+
+    int longestPath(vector<vector<int>> matrix, int xs, int ys, int xd, int yd){
+        if(xs == xd && ys == yd) return 0;
+        llint ans = helper(xs,ys,xd,yd,0,matrix);
+        if(ans <= 0 || matrix[xs][ys] == 0 || matrix[xd][yd] == 0) return -1;
+        return ans;
     }
 };
 
