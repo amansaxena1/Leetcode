@@ -13,10 +13,10 @@ class Solution {
 public:
     
     void helper(TreeNode *root, vector<string>&ans, string s){
-        s += (to_string(root->val) + "->");
-        if(root->left) helper(root->left, ans, s);
-        if(root->right) helper(root->right, ans, s);
-        if(!root->left && !root->right) ans.push_back(s.substr(0, s.length()-2));
+        s += to_string(root->val);
+        if(root->left) helper(root->left, ans, s + "->");
+        if(root->right) helper(root->right, ans, s + "->");
+        if(!root->left && !root->right) ans.push_back(s);
     }
     
     vector<string> binaryTreePaths(TreeNode* root) {
