@@ -1,0 +1,30 @@
+/************************************************************
+​
+   Following is the TreeNode class structure
+​
+   class TreeNode {
+    public:
+        int data;
+        vector<TreeNode*> children;
+​
+        TreeNode(int data) {
+            this->data = data;
+        }
+   }
+​
+************************************************************/
+#include<bits/stdc++.h>
+int helper(TreeNode* root, int &ans){
+    int l = 0;
+    for(auto i:root->children){
+        l = max(l, helper(i, ans));
+    }
+    ans = max(ans, root->data + l);
+    return l + root->data;
+}
+​
+int findMaxSum(int n, TreeNode* root){
+    int ans = 0;
+    helper(root,ans);
+    return ans;
+}
