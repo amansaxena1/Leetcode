@@ -1,0 +1,33 @@
+/************************************************************
+​
+    Following is the TreeNode class structure
+​
+    template <typename T>
+    class TreeNode {
+       public:
+        T data;
+        TreeNode<T> *left;
+        TreeNode<T> *right;
+​
+        TreeNode(T data) {
+            this->data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+​
+************************************************************/
+#include<bits/stdc++.h>
+int helper(TreeNode<int> *root, int &ans){
+    int l = 0, r = 0;
+    if(root->left) l = helper(root->left, ans);
+    if(root->right) r = helper(root->right, ans);
+    ans = max({ans, l + r + root->data, l + root->data, r + root->data});
+    return max(root->data + max(l, r), root->data);
+    
+}
+int maxPathSum(TreeNode<int> *root){
+    int ans = INT_MIN;
+    helper(root, ans);
+    return ans;
+}
