@@ -1,0 +1,15 @@
+#include <bits/stdc++.h> 
+#include <bits/stdc++.h> 
+int subarraysXor(vector<int> &arr, int t)
+{
+    map<int,int>mp;
+    int x = 0;
+    int ans = 0;
+    for(auto i:arr){
+        x ^= i;
+        if(x == t) ans++;
+        if(mp.find(x ^ t) != mp.end()) ans += (mp[x ^ t]);
+        mp[x]++;
+    }
+    return ans;
+}
